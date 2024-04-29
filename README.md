@@ -2,17 +2,17 @@
 
 ![Overview](https://raw.githubusercontent.com/christt105/Elit3D/main/docs/images/overview.png)
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/christt105/Elit3D)](https://github.com/christt105/Elit3D/releases/latest)
-![GitHub Release Date](https://img.shields.io/github/release-date/christt105/Elit3D)
-![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/christt105/Elit3D/latest)
-![Downloads](https://img.shields.io/github/downloads/christt105/Elit3D/total)
-![Contributors](https://img.shields.io/github/contributors/christt105/Elit3D)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/KoboldSoftware/Elit3D)](https://github.com/KoboldSoftware/Elit3D/releases/latest)
+![GitHub Release Date](https://img.shields.io/github/release-date/KoboldSoftware/Elit3D)
+![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/KoboldSoftware/Elit3D/latest)
+![Downloads](https://img.shields.io/github/downloads/KoboldSoftware/Elit3D/total)
+![Contributors](https://img.shields.io/github/contributors/KoboldSoftware/Elit3D)
 
 [![Discord Server](https://img.shields.io/discord/844648999042285628?logo=discord&style=plastic)](https://discord.gg/yW6DkKvtnS)
-[![Twitter Follow](https://img.shields.io/twitter/follow/elit3dmap?style=social)](https://twitter.com/elit3dmap)
-[![GitHub Star](https://img.shields.io/github/stars/christt105/Elit3D?style=social)](https://github.com/christt105/Elit3D/stargazers)
+[![GitHub Star](https://img.shields.io/github/stars/KoboldSoftware/Elit3D?style=social)](https://github.com/KoboldSoftware/Elit3D/stargazers)
 
 Elit3D is a tile-based map editor in 3D. Composed of several layers of tiles and 3D objects, it allows you to export the maps in different formats.
+This fork fixes some bugs and updates 3rd party components.
 
 ## Download
 
@@ -20,13 +20,14 @@ Download the latest release on itch.io [christt105.itch.io/elit3d](https://chris
 
 ## Getting Started
 
-Elit3D is only tested on Visual Studio 2019 on Windows but the plan is to be compatible with Linux and Mac (minimum Linux) in a future.
+Elit3D is only tested on Visual Studio 2019/2022 on Windows but the plan is to be compatible with Linux and Mac (minimum Linux) in a future.
 
 ### Build
 
-- Clone the repository `git clone https://github.com/christt105/Elit3D`
+- Clone the repository `git clone https://github.com/KoboldSoftware/Elit3D`
 - Execute the script `premake5.lua` with `premake/premake5.exe`
-  - For Windows - Visual Studio 2019 just execute the `scripts/generate_project.bat` file
+  - For Windows - Visual Studio 2019 just execute the `scripts/generate_project_vs2019.bat` file
+  - For Windows - Visual Studio 2022 just execute the `scripts/generate_project_vs2022.bat` file
 
 ## Main Goal
 
@@ -34,13 +35,14 @@ The goal of this project is to create a tool to create RPG maps like Pokémon 4t
 
 ![Lavender Town in Pokémon Heartgold and Soulsilver](https://vignette.wikia.nocookie.net/espokemon/images/b/b7/Pueblo_lavanda_HGSS.png/revision/latest?cb=20100206024454)
 
-To know more about the features, see the [ROADMAP](https://github.com/christt105/Elit3D/blob/master/ROADMAP.md) file. You can also check the [ClickUp boards](https://share.clickup.com/l/h/4-4678676-1/7e2410f745d66ec) where I put the task I work on.
+To know more about the features, see the [ROADMAP](https://github.com/christt105/Elit3D/blob/master/ROADMAP.md) file.
 
 ## Author
 
-This project is made by [christt105](https://github.com/christt105). This project started as my final thesis.
+This project is made by [christt105](https://github.com/christt105) and started as his final thesis.
+Fork created by [Kobold](https://github.com/KoboldSoftware).
 
-Repository: [https://github.com/christt105/Elit3D](https://github.com/christt105/Elit3D)
+Repository: [https://github.com/KoboldSoftware/Elit3D](https://github.com/KoboldSoftware/Elit3D)
 
 ## Contributing
 
