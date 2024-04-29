@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.6.4] - 2024-04-29 - KoboldSoftware
+### Updated
+* zlib 1.3.1
+* Assimp 5.3
+* imgui_markdown
+### Fixed
+* iTypeVar stores intptr_t instead of int
+* class Object destructor made public
+* ImGui uses invalid enum GL_CLIP_ORIGIN on OpenGL <= 3.3
+
 ## [0.6.3] - 2021-06-21
 ### Fixed
 * Crash on open application
