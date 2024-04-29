@@ -188,7 +188,7 @@ void p1ObjectEditor::InfoWindow()
 					ImGui::Indent();
 
 					if (ImGui::Selectable("Select", selected == i - object->meshes.begin()))
-						selected = i - object->meshes.begin();
+						selected = (int)(i - object->meshes.begin());
 
 					strcpy((*i)->buffer, (*i)->name.c_str());
 					ImGui::InputText("Name", (*i)->buffer, 20);
@@ -276,7 +276,7 @@ void p1ObjectEditor::DrawUVs(float width, float height)
 			ImVec2 mouse = ImGui::GetMousePos();
 			for (auto i = corners.begin(); i != corners.end(); ++i) {
 				if (mouse.x > (*i).first.x && mouse.y > (*i).first.y && mouse.x < (*i).second.x && mouse.y < (*i).second.y) {
-					dragging = i - corners.begin();
+					dragging = (int)(i - corners.begin());
 					break;
 				}
 			}

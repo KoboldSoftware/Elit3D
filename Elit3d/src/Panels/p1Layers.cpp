@@ -71,7 +71,7 @@ void p1Layers::DisplayLayers(std::vector<MapLayer*>* layers)
 					App->objects->layer_root_selected = nullptr;
 			}
 			else {
-				selected = layers->size() - (l - layers->rbegin()) - 1;
+				selected = (int)(layers->size() - (l - layers->rbegin()) - 1);
 				App->gui->inspector->SetSelected(*l, p1Inspector::SelectedType::LAYER);
 				if ((*l)->type == MapLayer::Type::OBJECT)
 					App->objects->layer_root_selected = ((MapLayerTerrain*)(*l))->root;

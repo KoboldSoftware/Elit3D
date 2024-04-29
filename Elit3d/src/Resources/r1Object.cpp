@@ -53,7 +53,7 @@ void r1Object::Load()
 	if (texture = (r1Texture*)App->resources->Get(json["texture"]))
 		texture->Attach();
 
-	bvertices.size = json["vertices"].size()/3;
+	bvertices.size = (unsigned int)(json["vertices"].size() / 3);
 	bvertices.data = new float[bvertices.size * 3];
 	i = 0;
 	for (auto v = json["vertices"].begin(); v != json["vertices"].end(); ++v) {
@@ -63,7 +63,7 @@ void r1Object::Load()
 	bindices.size = bvertices.size / 2 * 3;
 	bindices.data = new unsigned int[bindices.size];
 	i = 0;
-	for (auto in = 0; in < bindices.size; in += 6, ++i) {
+	for (unsigned int in = 0; in < bindices.size; in += 6, ++i) {
 		int offset = i * 4;
 		bindices.data[in    ] = 0 + offset;
 		bindices.data[in + 1] = 2 + offset;
@@ -73,7 +73,7 @@ void r1Object::Load()
 		bindices.data[in + 5] = 2 + offset;
 	}
 
-	btexture.size = json["texCoords"].size() / 2;
+	btexture.size = (unsigned int)(json["texCoords"].size() / 2);
 	btexture.data = new float[btexture.size * 2];
 	i = 0;
 	for (auto v = json["texCoords"].begin(); v != json["texCoords"].end(); ++v) {

@@ -67,7 +67,8 @@ void MapLayerTerrain::Draw(const int2& size, int tile_width, int tile_height) co
 			for (auto& m : static_cast<r1Model*>(obj)->meshes) {
 				oglh::BindBuffers(m->VAO, m->vertices.id, m->indices.id);
 
-				shader->SetMat4("model", float4x4::FromTRS(float3(i % size.x, height, i / size.x), Quat::identity, float3::one) * tile->transform.GetGlobalMatrix());
+				// shader->SetMat4("model", float4x4::FromTRS(float3(i % size.x, height, i / size.x), Quat::identity, float3::one) * tile->transform.GetGlobalMatrix());
+				shader->SetMat4("model", float4x4::FromTRS(float3((float)(i % size.x), height, (float)(i / size.x)), Quat::identity, float3::one) * tile->transform.GetGlobalMatrix());
 
 				auto tex = (r1Texture*)App->resources->Get(static_cast<r1Model*>(obj)->materials[m->tex_i]);
 				if (tex != nullptr) tex->Bind();

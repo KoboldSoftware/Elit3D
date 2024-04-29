@@ -111,9 +111,9 @@ aiNode* MapLayerTile::Parse(std::vector<aiMesh*>& meshes) const
 	meshes.push_back(mesh);
 
 	ret->mMeshes = new unsigned int[1];
-	ret->mMeshes[0] = meshes.size() - 1;
+	ret->mMeshes[0] = (unsigned int)(meshes.size() - 1);
 
-	ret->mTransformation = aiMatrix4x4(aiVector3D(map->GetSize().x, 1, map->GetSize().y), aiQuaternion(), aiVector3D(displacement[0], height, displacement[1]));
+	ret->mTransformation = aiMatrix4x4(aiVector3D((ai_real)map->GetSize().x, 1, (ai_real)map->GetSize().y), aiQuaternion(), aiVector3D((ai_real)displacement[0], height, (ai_real)displacement[1]));
 
 	return ret;
 }

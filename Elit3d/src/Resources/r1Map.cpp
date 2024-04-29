@@ -226,7 +226,7 @@ void r1Map::ExportOBJ() const
 			continue;
 
 		std::map<unsigned int, std::vector<unsigned int>> tiles; // <tile_id, index_position>
-		for (unsigned int i = 0U; i < size.x * size.y; ++i) {
+		for (unsigned int i = 0U; i < (unsigned int)(size.x * size.y); ++i) {
 			if (l->data[i] == 0U)
 				continue;
 			tiles[l->data[i]].push_back(i);
@@ -251,10 +251,10 @@ void r1Map::ExportOBJ() const
 			for (auto& v : (*t).second) {
 				int2 coord(v / size.x, v % size.x);
 
-				file += Exporter::SetVertex(coord.x,	 l->height, coord.y);
-				file += Exporter::SetVertex(coord.x + 1, l->height, coord.y);
-				file += Exporter::SetVertex(coord.x + 1, l->height, coord.y + 1);
-				file += Exporter::SetVertex(coord.x,	 l->height, coord.y + 1);
+				file += Exporter::SetVertex((float)coord.x,	 l->height, (float)coord.y);
+				file += Exporter::SetVertex((float)(coord.x + 1), l->height, (float)coord.y);
+				file += Exporter::SetVertex((float)(coord.x + 1), l->height, (float)(coord.y + 1));
+				file += Exporter::SetVertex((float)coord.x,	 l->height, (float)(coord.y + 1));
 
 				verttex += Exporter::SetVertexTexture(texCoord.x,						texCoord.y);
 				verttex += Exporter::SetVertexTexture(texCoord.x + tileSizeTexCoord.x,	texCoord.y);
@@ -321,7 +321,7 @@ void r1Map::ExportOBJ() const
 				auto& mat = tile->transform.GetGlobalMatrix();
 				float2 colrow = { float(i % size.x), float(i / size.x) };
 				std::string vt;
-				for (int v = 0; v < o->bvertices.size; ++v) {
+				for (unsigned int v = 0; v < o->bvertices.size; ++v) {
 					float3 local = { o->bvertices.data[v * 3 + 2], o->bvertices.data[v * 3 + 1], o->bvertices.data[v * 3] };
 					auto pos = mat.MulPos(local);
 					//file += Exporter::SetVertex(pos.x, pos.y, pos.z);
@@ -330,7 +330,7 @@ void r1Map::ExportOBJ() const
 				}
 				file += vt;
 				file += "usemtl " + mtlTexture + "\n";
-				for (int in = 0; in < o->bindices.size; in += 3) {
+				for (unsigned int in = 0; in < o->bindices.size; in += 3) {
 					file += Exporter::SetFace(nvertex + o->bindices.data[in], nvertex + o->bindices.data[in + 2], nvertex + o->bindices.data[in + 1],
 						ntexture + o->bindices.data[in], ntexture + o->bindices.data[in + 2], ntexture + o->bindices.data[in + 1]);
 				}
@@ -367,7 +367,7 @@ void r1Map::ExportOBJ() const
 					float4x4 mat = tile->transform.GetGlobalMatrix();
 					float2 colrow = { float(i % size.x), float(i / size.x) };
 					std::string vt;
-					for (int v = 0; v < m->vertices.size; ++v) {
+					for (unsigned int v = 0; v < m->vertices.size; ++v) {
 						float3 local = { m->vertices.data[v * 3], m->vertices.data[v * 3 + 1], m->vertices.data[v * 3 + 2] };
 						auto pos = float4x4::FromTRS(float3::zero, Quat::identity, float3(-1.f, 1.f, 1.f)).MulPos((Quat::RotateAxisAngle(float3::unitY, -math::pi / 2.f) * mat).MulPos(local));
 						pos += float3(colrow.y, l->height, colrow.x);
@@ -376,7 +376,7 @@ void r1Map::ExportOBJ() const
 					}
 					file += vt;
 					file += "usemtl " + mtlTexture + "\n";
-					for (int in = 0; in < m->indices.size; in += 3) {
+					for (unsigned int in = 0; in < m->indices.size; in += 3) {
 						file += Exporter::SetFace(nvertex + m->indices.data[in], nvertex + m->indices.data[in + 2], nvertex + m->indices.data[in + 1],
 							ntexture + m->indices.data[in], ntexture + m->indices.data[in + 2], ntexture + m->indices.data[in + 1]);
 					}
@@ -435,7 +435,7 @@ void r1Map::ExportOBJ() const
 			std::string vt;
 			auto rm = (r1Mesh*)App->resources->Get(m->GetMesh());
 			float4x4 mat = ((c1Transform*)o->GetComponent(Component::Type::Transform))->GetGlobalMatrix();
-			for (int v = 0; v < rm->vertices.size; ++v) {
+			for (unsigned int v = 0; v < rm->vertices.size; ++v) {
 				float3 local = { rm->vertices.data[v * 3 + 2], rm->vertices.data[v * 3 + 1], rm->vertices.data[v * 3] };
 				float3 pos, scale;
 				Quat rot;
@@ -447,7 +447,7 @@ void r1Map::ExportOBJ() const
 			file += vt;
 
 			file += "usemtl " + mtlTexture + "\n";
-			for (int in = 0; in < rm->indices.size; in += 3) {
+			for (unsigned int in = 0; in < rm->indices.size; in += 3) {
 				file += Exporter::SetFace(nvertex + rm->indices.data[in], nvertex + rm->indices.data[in + 2], nvertex + rm->indices.data[in + 1],
 					ntexture + rm->indices.data[in], ntexture + rm->indices.data[in + 2], ntexture + rm->indices.data[in + 1]);
 			}
@@ -541,8 +541,8 @@ void r1Map::Edit(MapLayerTile* layer, int row, int col, int brushSize, p1Tools::
 		case p1Tools::Shape::CIRCLE: {
 			float r = (float)brushSize * 0.5f;
 			float r2 = r * r;
-			for (int i = (brushSize % 2 == 0) ? col - r + 1 : col - r; i < col + r + 1; ++i) {
-				for (int j = (brushSize % 2 == 0) ? row - r + 1 : row - r; j < row + r + 1; ++j) {
+			for (int i = (brushSize % 2 == 0) ? col - (int)r + 1 : col - (int)r; i < col + (int)r + 1; ++i) {
+				for (int j = (brushSize % 2 == 0) ? row - (int)r + 1 : row - (int)r; j < row + (int)r + 1; ++j) {
 					if (i >= 0 && j >= 0 && i < size.x && j < size.y) {
 						float check = (brushSize % 2 == 0) ?
 							((float)i - col - 0.5f) * ((float)i - col - 0.5f) + ((float)j - row - 0.5f) * ((float)j - row - 0.5f)

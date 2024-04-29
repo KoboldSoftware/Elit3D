@@ -79,7 +79,7 @@ void r1Model::Load()
 	meta = meta["properties"];
 
 	//Load meshes
-	for (int im = 0; im < scene->mNumMeshes; ++im) {
+	for (unsigned int im = 0; im < scene->mNumMeshes; ++im) {
 		aiMesh* m = scene->mMeshes[im];
 
 		nlohmann::json jmesh = meta["meshes"][im];
@@ -98,7 +98,7 @@ void r1Model::Load()
 		mesh->vertices.data = new float[mesh->vertices.size * 3];
 		memset(mesh->vertices.data, 0.f, sizeof(float) * mesh->vertices.size * 3);
 
-		for (int v = 0; v < m->mNumVertices; ++v) {
+		for (unsigned int v = 0; v < m->mNumVertices; ++v) {
 			mesh->vertices.data[v * 3] = m->mVertices[v].x;
 			mesh->vertices.data[v * 3 + 1] = m->mVertices[v].y;
 			mesh->vertices.data[v * 3 + 2] = m->mVertices[v].z;
@@ -111,7 +111,7 @@ void r1Model::Load()
 			mesh->normals.data = new float[mesh->normals.size * 3];
 			memset(mesh->normals.data, 0.f, sizeof(float) * mesh->normals.size * 3);
 
-			for (int n = 0; n < m->mNumVertices; ++n) {
+			for (unsigned int n = 0; n < m->mNumVertices; ++n) {
 				mesh->normals.data[n * 3] = m->mNormals[n].x;
 				mesh->normals.data[n * 3 + 1] = m->mNormals[n].y;
 				mesh->normals.data[n * 3 + 2] = m->mNormals[n].z;
@@ -124,8 +124,8 @@ void r1Model::Load()
 		mesh->indices.data = new unsigned int[mesh->indices.size];
 		memset(mesh->indices.data, 0U, sizeof(unsigned int) * mesh->indices.size);
 
-		for (int f = 0; f < m->mNumFaces; ++f) {
-			for (int n = 0; n < m->mFaces[f].mNumIndices; ++n)
+		for (unsigned int f = 0; f < m->mNumFaces; ++f) {
+			for (unsigned int n = 0; n < m->mFaces[f].mNumIndices; ++n)
 				mesh->indices.data[f * m->mFaces[f].mNumIndices + n] = m->mFaces[f].mIndices[n];
 		}
 
@@ -136,7 +136,7 @@ void r1Model::Load()
 			mesh->texture.data = new float[mesh->texture.size * 2];
 			memset(mesh->texture.data, 0.f, sizeof(float) * mesh->texture.size * 2);
 
-			for (int n = 0; n < m->mNumVertices; ++n) {
+			for (unsigned int n = 0; n < m->mNumVertices; ++n) {
 				mesh->texture.data[n * 2] = m->mTextureCoords[0][n].x;
 				mesh->texture.data[n * 2 + 1] = m->mTextureCoords[0][n].y;
 			}
@@ -147,7 +147,7 @@ void r1Model::Load()
 		meshes.push_back(mesh);
 	}
 
-	for (int it = 0; it < scene->mNumMaterials; ++it) {
+	for (unsigned int it = 0; it < scene->mNumMaterials; ++it) {
 		aiMaterial const* mat = scene->mMaterials[it];
 
 		unsigned int ntex = mat->GetTextureCount(aiTextureType::aiTextureType_DIFFUSE);
@@ -174,11 +174,11 @@ void r1Model::Load()
 		}
 	}
 
-	assert(root == nullptr, "root is not nullptr");
+	// assert(root == nullptr, "root is not nullptr");
 
 	root = new Node();
 	root->name = "root";
-	for (int i = 0; i < scene->mRootNode->mNumChildren; ++i) {
+	for (unsigned int i = 0; i < scene->mRootNode->mNumChildren; ++i) {
 		Node* c = new Node();
 		LoadNode(scene->mRootNode->mChildren[i], scene, c);
 		c->parent = root;
@@ -240,7 +240,7 @@ void r1Model::CreateHierarchy(nlohmann::json& parent, aiNode* node)
 		}
 	}
 
-	for (int i = 0; i < node->mNumChildren; ++i) {
+	for (unsigned int i = 0; i < node->mNumChildren; ++i) {
 		nlohmann::json child;
 		CreateHierarchy(child, node->mChildren[i]);
 		parent["children"].push_back(child);
@@ -271,7 +271,7 @@ void r1Model::GenerateFiles()
 		LoadMetaData(scene->mMetaData);
 	}
 
-	for (int im = 0; im < scene->mNumMeshes; ++im) {
+	for (unsigned int im = 0; im < scene->mNumMeshes; ++im) {
 		nlohmann::json jmesh;
 		jmesh["uid"] = Random::RandomGUID();
 		jmesh["index"] = im;
@@ -279,12 +279,12 @@ void r1Model::GenerateFiles()
 		mprop["meshes"].push_back(jmesh);
 	}
 
-	for (int it = 0; it < scene->mNumMaterials; ++it) {
+	for (unsigned int it = 0; it < scene->mNumMaterials; ++it) {
 		LOGN("Material %s", scene->mMaterials[it]->GetName().C_Str());
-		for (int s = 0; s < scene->mMaterials[it]->GetTextureCount(aiTextureType::aiTextureType_SPECULAR); ++s) {
+		for (unsigned int s = 0; s < scene->mMaterials[it]->GetTextureCount(aiTextureType::aiTextureType_SPECULAR); ++s) {
 			//TODO: Load more texture types
 		}
-		for (int d = 0; d < scene->mMaterials[it]->GetTextureCount(aiTextureType::aiTextureType_DIFFUSE); ++d) {
+		for (unsigned int d = 0; d < scene->mMaterials[it]->GetTextureCount(aiTextureType::aiTextureType_DIFFUSE); ++d) {
 			aiString p;
 			if (scene->mMaterials[it]->GetTexture(aiTextureType::aiTextureType_DIFFUSE, d, &p) == aiReturn::aiReturn_FAILURE) {
 				LOGE("GetTexture Failed");
@@ -294,7 +294,7 @@ void r1Model::GenerateFiles()
 		}
 	}
 
-	for (int it = 0; it < scene->mNumTextures; ++it) {
+	for (unsigned int it = 0; it < scene->mNumTextures; ++it) {
 		LOGN("Texture %s", scene->mTextures[it]->mFilename.C_Str());
 	}
 

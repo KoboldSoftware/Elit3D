@@ -523,8 +523,8 @@ static	void	dumpAllocations(FILE *fp)
 		{
 			fprintf(fp, "%06d 0x%08X 0x%08X 0x%08X 0x%08X 0x%08X %-8s    %c       %c    %s\r\n",
 				ptr->allocationNumber,
-				reinterpret_cast<unsigned int>(ptr->reportedAddress), ptr->reportedSize,
-				reinterpret_cast<unsigned int>(ptr->actualAddress), ptr->actualSize,
+				reinterpret_cast<unsigned int>(ptr->reportedAddress), (unsigned int)ptr->reportedSize,
+				reinterpret_cast<unsigned int>(ptr->actualAddress), (unsigned int)ptr->actualSize,
 				m_calcUnused(ptr),
 				allocationTypes[ptr->allocationType],
 				ptr->breakOnDealloc ? 'Y':'N',
@@ -543,7 +543,7 @@ static	void	dumpLeakReport()
 
 	// If you hit this assert, then the memory report generator is unable to log information to a file (can't open the file for
 	// some reason.)
-	m_assert((int)fp);
+	m_assert(fp);
 	if (!fp) return;
 
 	// Any leaks?
@@ -1090,7 +1090,7 @@ void	*m_allocator(const char *sourceFile, const unsigned int sourceLine, const c
 			// Add this address to our reservoirBuffer so we can free it later
 
 			sAllocUnit	**temp = (sAllocUnit **) realloc(reservoirBuffer, (reservoirBufferSize + 1) * sizeof(sAllocUnit *));
-			m_assert((int)temp);
+			m_assert(temp);
 			if (temp)
 			{
 				reservoirBuffer = temp;
@@ -1309,7 +1309,7 @@ void	*m_reallocator(const char *sourceFile, const unsigned int sourceLine, const
 		// If you hit this assert, then the requested allocation simply failed (you're out of memory) Interrogate the
 		// variable 'au' to see the original allocation. You can also query 'newActualSize' to see the amount of memory
 		// trying to be allocated. Finally, you can query 'reportedSize' to see how much memory was requested by the caller.
-		m_assert((int)newActualAddress);
+		m_assert(newActualAddress);
 		#endif
 
 		if (!newActualAddress) throw "Request for reallocation failed. Out of memory.";
@@ -1699,7 +1699,7 @@ void	m_dumpMemoryReport(const char *filename, const bool overwrite)
 
 	// If you hit this assert, then the memory report generator is unable to log information to a file (can't open the file for
 	// some reason.)
-	m_assert((int)fp);
+	m_assert(fp);
 	if (!fp) return;
 
         // Header

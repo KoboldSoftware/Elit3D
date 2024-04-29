@@ -123,7 +123,7 @@ void p1Console::Update()
 	else {
 		if (info && error && warning) {
 			ImGuiListClipper clipper;
-			clipper.Begin(logs.size());
+			clipper.Begin((int)logs.size());
 			while (clipper.Step())
 			{
 				for (int line_no = clipper.DisplayStart; line_no < clipper.DisplayEnd; line_no++)

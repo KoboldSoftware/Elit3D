@@ -23,7 +23,7 @@ void m1UndoRedo::AddCommand(Command* command)
 
 	commands.push_back(command);
 
-	iterator = commands.size() - 1;
+	iterator = (int)(commands.size() - 1);
 }
 
 UpdateStatus m1UndoRedo::Update()

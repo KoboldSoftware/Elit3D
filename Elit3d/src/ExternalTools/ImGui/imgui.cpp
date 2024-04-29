@@ -7201,7 +7201,7 @@ void ImGui::SetNextWindowSize(const ImVec2& size, ImGuiCond cond)
 
 void ImGui::SetNextWindowCentered(const ImVec2& size, ImGuiCond cond)
 {
-    ImVec2 window(App->window->GetWidth(), App->window->GetHeight());
+    ImVec2 window((float)App->window->GetWidth(), (float)App->window->GetHeight());
     SetNextWindowSize(size, cond);
     SetNextWindowPos(ImVec2(window.x * 0.5f - size.x * 0.5f, window.y * 0.5f - size.y * 0.5f), cond);
 }

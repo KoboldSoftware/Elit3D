@@ -259,9 +259,10 @@ void m1MapEditor::MouseTile(r1Map* m, MapLayerTile* layer, const int2& tile)
 	//if (tool != p1Tools::Tools::BUCKET) { TODO: Fix
 	shader->SetMat4("model",
 		float4x4::FromTRS(
-			float3(tile.y - brushSize + 1 + brushSize / 2, layer->height + 0.0001f, tile.x - brushSize + 1 + brushSize / 2),
+			// float3(tile.y - brushSize + 1 + brushSize / 2, layer->height + 0.0001f, tile.x - brushSize + 1 + brushSize / 2),
+			float3((float)(tile.y - brushSize + 1) + (float)brushSize / 2.0f, layer->height + 0.0001f, (float)(tile.x - brushSize + 1) + (float)brushSize / 2.0f),
 			Quat::identity,
-			float3(brushSize, 1.f, brushSize)));
+			float3((float)brushSize, 1.f, (float)brushSize)));
 	/*}
 	else {
 	shader->SetMat4("model",
@@ -464,7 +465,7 @@ MapLayerTerrain* m1MapEditor::GetObjectLayer(bool create_if_no_exist, bool selec
 	if (create_if_no_exist) {
 		auto l = (MapLayerTerrain*)AddLayer(MapLayer::Type::OBJECT);
 		if (select)
-			panel_layers->SetSelected(m->layers.size()-1);
+			panel_layers->SetSelected((int)(m->layers.size()-1));
 		return l;
 	}
 

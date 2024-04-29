@@ -25,7 +25,7 @@ std::string compress_string(const std::string& str,
         throw(std::runtime_error("deflateInit failed while compressing."));
 
     zs.next_in = (Bytef*)str.data();
-    zs.avail_in = str.size();           // set the z_stream's input
+    zs.avail_in = (uInt)str.size();           // set the z_stream's input
 
     int ret;
     char outbuffer[32768];
@@ -66,7 +66,7 @@ std::string decompress_string(const std::string& str)
         throw(std::runtime_error("inflateInit failed while decompressing."));
 
     zs.next_in = (Bytef*)str.data();
-    zs.avail_in = str.size();
+    zs.avail_in = (uInt)str.size();
 
     int ret;
     char outbuffer[32768];
