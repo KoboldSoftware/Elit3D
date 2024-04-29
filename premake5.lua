@@ -19,6 +19,7 @@ project "Elit3d"
 		"%{wks.location}/Elit3d/src/ExternalTools/GLEW/include",
 		"%{wks.location}/Elit3d/src/ExternalTools/SDL2/include",
 		"%{wks.location}/Elit3d/src/ExternalTools/DevIL/include",
+		"%{wks.location}/Elit3d/src/ExternalTools/Assimp/include",
 		"%{wks.location}/Elit3d/src"
 	}
 	

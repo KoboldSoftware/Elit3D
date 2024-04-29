@@ -7,7 +7,7 @@
 #include "ExternalTools/MathGeoLib/include/Math/float4x4.h"
 #include "ExternalTools/MathGeoLib/include/Math/Quat.h"
 
-#include "ExternalTools/Assimp/include/scene.h"
+#include "ExternalTools/Assimp/include/assimp/scene.h"
 
 #include "Tools/OpenGL/OpenGLHelper.h"
 #include "ExternalTools/base64/base64.h"

@@ -7,7 +7,7 @@
 
 #include "Tools/OpenGL/Buffer.h"
 
-struct aiNode;
+class aiNode;
 struct aiScene;
 class Object;
 class r1Mesh;

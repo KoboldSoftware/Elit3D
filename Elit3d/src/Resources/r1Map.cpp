@@ -33,8 +33,8 @@
 #include "ExternalTools/DevIL/include/IL/il.h"
 #include "ExternalTools/DevIL/include/IL/ilut.h"
 
-#include "ExternalTools/Assimp/include/scene.h"
-#include "ExternalTools/Assimp/include/Exporter.hpp"
+#include "ExternalTools/Assimp/include/assimp/scene.h"
+#include "ExternalTools/Assimp/include/assimp/Exporter.hpp"
 #include "Tools/Importers/Exporter.h"
 
 #include "ExternalTools/lodepng/lodepng.h"

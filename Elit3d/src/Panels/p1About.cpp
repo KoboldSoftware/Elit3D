@@ -14,7 +14,7 @@
 #include "ExternalTools/DevIL/include/IL/il.h"
 #include "ExternalTools/DevIL/include/IL/ilu.h"
 #include "ExternalTools/DevIL/include/IL/ilut.h"
-#include "ExternalTools/Assimp/include/version.h"
+#include "ExternalTools/Assimp/include/assimp/version.h"
 //#include "ExternalTools/infoware/include/version.hpp"
 
 //TODO: Put markdown code in other place

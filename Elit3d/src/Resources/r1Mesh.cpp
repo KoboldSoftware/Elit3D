@@ -5,7 +5,7 @@
 
 #include "Tools/OpenGL/OpenGLHelper.h"
 
-#include "ExternalTools/Assimp/include/scene.h"
+#include "ExternalTools/Assimp/include/assimp/scene.h"
 
 #include "ExternalTools/JSON/json.hpp"
 

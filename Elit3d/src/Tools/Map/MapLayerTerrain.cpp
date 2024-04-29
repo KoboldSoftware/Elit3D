@@ -20,7 +20,7 @@
 #include "Resources/r1Texture.h"
 #include "Resources/r1Map.h"
 
-#include "ExternalTools/Assimp/include/scene.h"
+#include "ExternalTools/Assimp/include/assimp/scene.h"
 
 #include "ExternalTools/base64/base64.h"
 #include "ExternalTools/zlib/zlib_strings.h"

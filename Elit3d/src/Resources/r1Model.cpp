@@ -1,8 +1,8 @@
 #include "r1Model.h"
 
-#include "ExternalTools/Assimp/include/Importer.hpp"
-#include "ExternalTools/Assimp/include/scene.h"
-#include "ExternalTools/Assimp/include/postprocess.h"
+#include "ExternalTools/Assimp/include/assimp/Importer.hpp"
+#include "ExternalTools/Assimp/include/assimp/scene.h"
+#include "ExternalTools/Assimp/include/assimp/postprocess.h"
 
 #include "ExternalTools/MathGeoLib/include/Math/Quat.h"
 
