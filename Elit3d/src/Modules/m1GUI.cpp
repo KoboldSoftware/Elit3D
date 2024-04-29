@@ -99,7 +99,7 @@ bool m1GUI::Start()
 	io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAB, 16.0f, &icons_config, icons_ranges2);
 	// use FONT_ICON_FILE_NAME_FAR if you want regular instead of solid
 	
-	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->render->context);
+	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->window->context);
 	ImGui_ImplOpenGL3_Init("#version 330");
 	
 	for (auto i = panels.begin(); i != panels.end(); ++i) {

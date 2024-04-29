@@ -30,6 +30,7 @@ public:
 
 private:
 	SDL_Window* window = nullptr;
+	SDL_GLContext context = nullptr;
 
 	int x = 0;
 	int y = 0;

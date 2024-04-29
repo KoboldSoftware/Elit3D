@@ -51,12 +51,6 @@ bool m1Render3D::Init(const nlohmann::json& node)
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, minor);
     }
 
-    context = SDL_GL_CreateContext(App->window->window);
-
-    if (context == NULL) {
-        LOG("OpenGL context could not be created! SDL Error: %s", SDL_GetError());
-        ret = false;
-    }
     GLenum error = glewInit();
     if (error != GLEW_OK) {
         LOG("Unable to initialize OpenGL with glewInit()! Error: %s", glewGetErrorString(error));
@@ -147,8 +141,6 @@ bool m1Render3D::CleanUp()
     }
 
     HANDLE_ERROR();
-
-    SDL_GL_DeleteContext(context);
 
     return true;
 }

@@ -76,6 +76,14 @@ bool m1Window::Init(const nlohmann::json& node)
             LOG("Window could not be created. SDL Error: %s", SDL_GetError());
             ret = false;
         }
+        else {
+            context = SDL_GL_CreateContext(window);
+
+            if (context == NULL) {
+                LOG("OpenGL context could not be created! SDL Error: %s", SDL_GetError());
+                ret = false;
+            }
+        }
     }
 
     return ret;
@@ -89,6 +97,7 @@ bool m1Window::Start()
 bool m1Window::CleanUp()
 {
     PROFILE_FUNCTION();
+    SDL_GL_DeleteContext(context);
     SDL_DestroyWindow(window);
     SDL_Quit();
 
