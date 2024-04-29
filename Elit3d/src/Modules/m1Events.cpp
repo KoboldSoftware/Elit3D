@@ -13,6 +13,8 @@
 
 #include "ExternalTools/mmgr/mmgr.h"
 
+#include "Objects/Object.h"
+
 m1Events::m1Events() : Module("Events", true)
 {
 }

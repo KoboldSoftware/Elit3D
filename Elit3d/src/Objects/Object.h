@@ -14,9 +14,9 @@ class Object
 	friend class p1Inspector;
 private:
 	Object(Object* parent = nullptr, const char* name = "Object");
-	~Object();
 
 public:
+	~Object();
 	void Update();
 
 	const char* GetName() const;
