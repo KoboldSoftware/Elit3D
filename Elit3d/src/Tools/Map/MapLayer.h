@@ -12,7 +12,7 @@
 #include "Properties.h"
 
 class r1Mesh;
-struct TypeVar;
+class TypeVar;
 class Object;
 class aiNode;
 class aiMesh;

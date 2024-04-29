@@ -21,7 +21,7 @@ float TypeVar::fGetValue()
 	return dynamic_cast<fTypeVar*>(this)->value;
 }
 
-int TypeVar::iGetValue()
+intptr_t TypeVar::iGetValue()
 {
 	return dynamic_cast<iTypeVar*>(this)->value;
 }

@@ -16,7 +16,7 @@ struct TypeVar {
     virtual ~TypeVar() = default;
 
     float fGetValue();
-    int iGetValue();
+    intptr_t iGetValue();
     std::string sGetValue();
     bool bGetValue();
 
@@ -31,9 +31,9 @@ struct fTypeVar : public TypeVar {
 };
 
 struct iTypeVar : public TypeVar {
-    iTypeVar(int n) : value(n), TypeVar(Type::Int) {}
+    iTypeVar(intptr_t n) : value(n), TypeVar(Type::Int) {}
     std::string ToString() override { return std::to_string(value); }
-    int value = 0;
+    intptr_t value = 0;
 };
 
 struct bTypeVar : public TypeVar {

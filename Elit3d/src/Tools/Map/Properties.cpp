@@ -156,7 +156,8 @@ void Properties::DisplayProperties()
 					static_cast<sTypeVar*>((*i).second)->value.assign(b);
 				break;
 			case TypeVar::Type::Int:
-				ImGui::InputInt((*i).first.c_str(), &static_cast<iTypeVar*>((*i).second)->value);
+				// Note: value is intptr_t, typecast works for 64bit little endian
+				ImGui::InputInt((*i).first.c_str(), (int *)&static_cast<iTypeVar*>((*i).second)->value);
 				break;
 			case TypeVar::Type::Float:
 				ImGui::InputFloat((*i).first.c_str(), &static_cast<fTypeVar*>((*i).second)->value);
