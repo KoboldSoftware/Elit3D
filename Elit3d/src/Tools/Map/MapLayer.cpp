@@ -34,12 +34,10 @@
 #include "ExternalTools/mmgr/mmgr.h"
 
 
-OpenGLBuffers MapLayer::tile = OpenGLBuffers();
-
 MapLayer::MapLayer(Type t, r1Map* m) : map(m), type(t)
 {
-	if (tile.vertices.size == 0u)
-		tile.InitData();
+	if (App->map_editor->gl_buffers->vertices.size == 0u)
+		App->map_editor->gl_buffers->InitData();
 	strcpy_s(buf, 30, name.c_str());
 }
 
@@ -65,7 +63,7 @@ void MapLayer::Resize(const int2& oldSize, const int2& newSize)
 
 void MapLayer::SelectBuffers()
 {
-	oglh::BindBuffers(tile.VAO, tile.vertices.id, tile.indices.id);
+	oglh::BindBuffers(App->map_editor->gl_buffers->VAO, App->map_editor->gl_buffers->vertices.id, App->map_editor->gl_buffers->indices.id);
 }
 
 void MapLayer::DrawTile(const int2& size)
@@ -74,7 +72,7 @@ void MapLayer::DrawTile(const int2& size)
 	shader->SetMat4("model", float4x4::FromTRS(float3(0.f, 0.f, 0.f), Quat::identity,
 	                                           float3(static_cast<float>(size.x), 1.f, static_cast<float>(size.y)))
 	                /* height of layer */);
-	oglh::DrawElements(tile.indices.size);
+	oglh::DrawElements(App->map_editor->gl_buffers->indices.size);
 }
 
 bool MapLayer::HeightOrder(const MapLayer* l1, const MapLayer* l2)

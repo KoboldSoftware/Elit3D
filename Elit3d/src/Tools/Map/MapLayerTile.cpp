@@ -38,7 +38,7 @@ void MapLayerTile::Draw(const int2& size, int tile_width, int tile_height) const
 	static auto shader = App->render->GetShader("tilemap");
 	shader->SetMat4("model", float4x4::FromTRS(float3((float)displacement[0] / (float)tile_width, height, (float)displacement[1] / (float)tile_height), Quat::identity, float3((float)size.x, 1.f, (float)size.y))); // TODO: don't create a mat4x4 for every layer
 	shader->SetFloat("alpha", opacity);
-	oglh::DrawElements(tile.indices.size);
+	oglh::DrawElements(App->map_editor->gl_buffers->indices.size);
 }
 
 void MapLayerTile::Reset(const int2& size)

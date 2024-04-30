@@ -105,8 +105,6 @@ public:
     static std::string DataTypeToString(DataTypeExport t);
     static MapLayer::DataTypeExport StringToDataType(const std::string& s);
 
-    static OpenGLBuffers tile;
-
     Properties properties;
 
     std::string name = "Layer";

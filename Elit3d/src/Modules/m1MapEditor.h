@@ -60,6 +60,8 @@ public:
 
     void ExportMap(MapTypeExport t, MapLayer::DataTypeExport d) const;
 
+    OpenGLBuffers* gl_buffers = nullptr;
+
 private:
     uint64_t map = 0ULL;
     

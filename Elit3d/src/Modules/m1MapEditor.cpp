@@ -46,10 +46,12 @@
 
 m1MapEditor::m1MapEditor() : Module("MapEditor", true)
 {
+	gl_buffers = new OpenGLBuffers();
 }
 
 m1MapEditor::~m1MapEditor()
 {
+	delete gl_buffers;
 }
 
 bool m1MapEditor::Start()
