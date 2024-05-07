@@ -262,7 +262,7 @@ void m1MapEditor::MouseTile(r1Map* m, MapLayerTile* layer, const int2& tile)
 	shader->SetMat4("model",
 		float4x4::FromTRS(
 			// float3(tile.y - brushSize + 1 + brushSize / 2, layer->height + 0.0001f, tile.x - brushSize + 1 + brushSize / 2),
-			float3((float)(tile.y - brushSize + 1) + (float)brushSize / 2.0f, layer->height + 0.0001f, (float)(tile.x - brushSize + 1) + (float)brushSize / 2.0f),
+			float3((float)(tile.y - brushSize + 1 + brushSize / 2), layer->height + 0.0001f, (float)(tile.x - brushSize + 1 + brushSize / 2)),
 			Quat::identity,
 			float3((float)brushSize, 1.f, (float)brushSize)));
 	/*}
