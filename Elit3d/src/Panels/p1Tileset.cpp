@@ -157,7 +157,7 @@ void p1Tileset::TileSetInfo(r1Tileset* tile)
 	ImGui::Text("\tMargin: ");  ImGui::SameLine(); ImGui::TextColored(ImVec4(1.f, 0.6f, 0.6f, 1.f), "%i", tile->margin);
 	ImGui::Text("Tile height: "); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.f, 0.6f, 0.6f, 1.f), "%i", tile->height);
 	ImGui::SameLine();
-	ImGui::Text("\tSpacin: ");  ImGui::SameLine(); ImGui::TextColored(ImVec4(1.f, 0.6f, 0.6f, 1.f), "%i", tile->spacing);
+	ImGui::Text("\tSpacing: ");  ImGui::SameLine(); ImGui::TextColored(ImVec4(1.f, 0.6f, 0.6f, 1.f), "%i", tile->spacing);
 
 	ImGui::Text("Columns:\t");  ImGui::SameLine(); ImGui::TextColored(ImVec4(1.f, 0.6f, 0.6f, 1.f), "%i", tile->columns);
 	ImGui::Text("Rows:\t"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.f, 0.6f, 0.6f, 1.f), "%i", tile->ntiles / tile->columns);

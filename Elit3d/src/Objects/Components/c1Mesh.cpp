@@ -76,7 +76,7 @@ void c1Mesh::OnInspector()
 			ImGui::Text("UID: "); ImGui::SameLine();
 			ImGui::TextColored(ImVec4(1.f, 0.6f, 0.f, 1.f), "%s", std::to_string(rmesh->GetUID()).c_str());
 
-			ImGui::Text("Referneces: "); ImGui::SameLine();
+			ImGui::Text("References: "); ImGui::SameLine();
 			ImGui::TextColored(ImVec4(1.f, 0.6f, 0.f, 1.f), "%u", rmesh->references);
 		}
 	}

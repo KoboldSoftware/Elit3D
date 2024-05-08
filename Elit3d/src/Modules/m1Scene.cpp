@@ -76,7 +76,9 @@ UpdateStatus m1Scene::Update()
 	}
 
 	if (App->debug.draw_mouse_pick_line) {
-		oglh::OldDrawLines(xd0, xd1);
+		//oglh::OldDrawLines(xd0, xd1);
+		LOGE("TODO: OldDrawLines() not supported. Disabling mouse pick line");
+		App->debug.draw_mouse_pick_line = false;
 	}
 
 	sceneViewport->End();

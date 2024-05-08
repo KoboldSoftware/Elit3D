@@ -10,7 +10,7 @@
 
 #include "ExternalTools/JSON/json.hpp"
 
-#define USE_PROFILER 1
+#define USE_PROFILER 0
 
 #if USE_PROFILER
 #define PROFILE_SECTION(name) ProfilerTimer timer##__LINE__(name)

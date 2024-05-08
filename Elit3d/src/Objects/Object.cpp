@@ -90,7 +90,7 @@ Component* Object::CreateComponent(Component::Type t)
 		components.push_back(new c1Material(this));
 		return components.back();
 	default:
-		LOGW("Component %i not created, not in swith", t);
+		LOGW("Component %i not created, not in switch", t);
 		break;
 	}
 	return nullptr;
