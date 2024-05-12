@@ -126,6 +126,7 @@ void MapLayerTerrain::Parse(pugi::xml_node& node, MapLayer::DataTypeExport t, bo
 			continue;
 
 		auto xobj = xobjs.append_child("object");
+		xobj.append_attribute("name").set_value(c->GetName());	// 20240512
 		xobj.append_attribute("model").set_value(mod->path.c_str());
 		c->GetComponent<c1Transform>()->Serialize(xobj.append_child("transform"));
 	}
@@ -150,6 +151,7 @@ void MapLayerTerrain::Parse(nlohmann::json& node, MapLayer::DataTypeExport t, bo
 				continue;
 
 			auto j = nlohmann::json();
+			j["name"] = c->GetName();	// 20240512
 			j["model"] = mod->path;
 			c->GetComponent<c1Transform>()->Serialize(j["transform"]);
 			node["objects"].push_back(j);

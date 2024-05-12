@@ -32,5 +32,7 @@ private:
 	SelectedType type = SelectedType::NONE;
 
 	bool loaded = false;
+
+	char bufname[30];
 };
 

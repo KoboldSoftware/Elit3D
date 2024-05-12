@@ -28,7 +28,18 @@ void p1Inspector::Update()
 			if (sel != nullptr) {
 				ImGui::Checkbox("##active_object", &sel->active);
 				ImGui::SameLine();
-				ImGui::Text(sel->name.c_str());
+				ImGui::Text("Active");	// Visible?
+
+				// 20240512 only edit model name, not each mesh
+				// TODO: this is a bad solution
+				if (sel->children.empty()) {
+					ImGui::Text(sel->name.c_str());
+				}
+				else {
+					if (ImGui::InputText("Name", bufname, 30))
+						sel->SetName(bufname);
+				}
+
 				for (auto i = sel->components.begin(); i != sel->components.end(); ++i) {
 					(*i)->OnInspector();
 				}
@@ -59,4 +70,6 @@ void p1Inspector::SetSelected(void* ptr, SelectedType t)
 	type = t;
 	if (type == p1Inspector::SelectedType::LAYER)
 		((MapLayer*)selected)->SetSelected();
+	else if (type == p1Inspector::SelectedType::OBJECT)		// 20240508
+		strcpy_s(bufname, sizeof(bufname), ((Object*)selected)->GetName());
 }
